@@ -41,6 +41,9 @@ BLENDER_RELEASE_DOWNLOADS_URL = 'https://download.blender.org/release/'
 MINIMUM_BLENDER_VERSION_SUPPPORTED = '2.57'
 NIGHLY_RELEASES_CACHE_EXPIRATION = 60 * 60 * 24  # 1 day
 
+USER_AGENT = 'Sollumz (blender-downloader)'
+HEADERS = {'User-Agent': USER_AGENT}
+
 
 def removesuffix(string, suffix):  # polyfill for Python < 3.9
     if string.endswith(suffix):
@@ -113,10 +116,7 @@ def get_running_os():
 
 
 def get_headers():
-    """Use a dummy user agent to avoid 403 forbidden errors."""
-    dummy_user_agent = ('Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) '
-                        'Gecko/20100101 Firefox/47.0')
-    return {'User-Agent': dummy_user_agent}
+    return HEADERS
 
 
 def open_request(url):
